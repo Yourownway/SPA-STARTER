@@ -5,16 +5,20 @@ const App = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.app);
 
-  useEffect(() => {
+  const handleClick = () => {
     dispatch({ type: "APP_INIT" });
-
     setTimeout(() => {
       dispatch({ type: "APP_READY" });
     }, 2000);
-  }, []);
+  };
 
   if (state.loading === true) return <div>Loading</div>;
-  return <div>Hello World</div>;
+  return (
+    <>
+      <h1> Welcome to React Redux </h1>
+      <button onClick={() => handleClick()}>Reload</button>
+    </>
+  );
 };
 
 export default App;
