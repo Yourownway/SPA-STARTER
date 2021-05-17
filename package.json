@@ -8,9 +8,14 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "react-redux": "^7.2.4",
+    "redux": "^4.1.0",
+    "redux-logger": "^3.0.6"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "./node_modules/parcel-bundler/bin/cli.js ./src/index.html"
   },
   "browserslist": [
     "last 3 and_chr versions",
