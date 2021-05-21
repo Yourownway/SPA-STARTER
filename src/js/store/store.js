@@ -1,13 +1,34 @@
+// import { createStore, applyMiddleware } from "redux";
+// import { createLogger } from "redux-logger";
+// import { rootReducer } from "./root";
+
+// const loggerMiddleware = createLogger();
+
+// export default (preloadedState) => {
+//   return createStore(
+//     rootReducer,
+//     preloadedState,
+//     applyMiddleware(loggerMiddleware)
+//   );
+// };
+
 import { createStore, applyMiddleware } from "redux";
 import { createLogger } from "redux-logger";
-import { rootReducer } from "./root";
+import rootReducer from "./root";
 
-const loggerMiddleware = createLogger();
+let preloadedState;
+const persistedUserData = localStorage.getItem("user");
 
-export default (preloadedState) => {
+if (persistedUserData) {
+  preloadedState = {
+    user: JSON.parse(persistedUserData),
+  };
+}
+
+export default function store(preloadedState) {
   return createStore(
     rootReducer,
     preloadedState,
-    applyMiddleware(loggerMiddleware)
+    applyMiddleware(createLogger())
   );
-};
+}

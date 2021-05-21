@@ -1,7 +1,8 @@
 import React from "react";
+import MainLayout from "../templates/MainLayout";
 
 const Books = () => {
-  return <div>Books</div>;
+  return <MainLayout>Books</MainLayout>;
 };
 
 export default Books;

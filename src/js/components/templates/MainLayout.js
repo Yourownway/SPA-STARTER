@@ -1,7 +1,13 @@
 import React from "react";
+import Nav from "../molecules/Nav";
 
 const MainLayout = ({ children }) => {
-  return <div>{children}</div>;
+  return (
+    <div>
+      <Nav />
+      {children}
+    </div>
+  );
 };
 
 export default MainLayout;
