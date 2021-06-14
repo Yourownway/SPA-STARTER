@@ -8,14 +8,22 @@ import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
 import AuthLayout from "./components/templates/AuthLayout";
 import MainLayout from "./components/templates/MainLayout";
+
 import "./style/globalStyle.css";
 import Nav from "./components/molecules/Nav";
+import { api } from "./utils";
+import PrivateRoute from "./router/PrivateRoute";
 
 const App = () => {
   console.log(store);
   const [clicked, setClicked] = useState(false);
   const dispatch = useDispatch();
   const state = useSelector((state) => state.app);
+
+  useEffect(async () => {
+    const auth = await api.get("/me");
+    console.log(auth);
+  }, []);
 
   const handleClick = () => {
     dispatch({ type: "APP_INIT" });
@@ -31,12 +39,12 @@ const App = () => {
     <>
       <Router>
         <Switch>
-          <Route path="/" exact>
+          <PrivateRoute path="/" exact>
             <Home />
-          </Route>
-          <Route path="/books">
+          </PrivateRoute>
+          <PrivateRoute path="/books">
             <Books />
-          </Route>
+          </PrivateRoute>
           <Route path="/register">
             <Register />
           </Route>
